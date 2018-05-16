@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion sdk_version
+    defaultConfig {
+        applicationId "com.example.xwh.myapplication"
+        minSdkVersion rootProject.ext.mini_sdk_version
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        // Sets the maximum number of DEX processes
+        // that can be started concurrently.
+        maxProcessCount 8
+        // Sets the maximum memory allocation pool size
+        // for the dex operation.
+        javaMaxHeapSize "2g"
+        // Enables Gradle to pre-dex library dependencies.
+        preDexLibraries true
+    }
+}
+
+dependencies {
+    // !!!!do not modify dependencies here， do it in config.gradle!!!!!
+
+    //kapt
+    rootProject.ext.annceationProcessors.each { ap -> kapt ap }
+    //testImplementation
+    testImplementation rootProject.ext.dependencies.junit
+    rootProject.ext.testLibs.each { lib -> testImplementation lib }
+    //implementation
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    rootProject.ext.libs.each { lib -> implementation lib }
+}

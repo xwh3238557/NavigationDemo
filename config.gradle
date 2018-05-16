@@ -1,0 +1,61 @@
+ext {
+    kotlin_version = '1.2.41'
+    sdk_version = 27
+    mini_sdk_version = 19
+
+    android_arch_lib_version = '1.1.1'
+    support_library_version = '27.1.1'
+    nav_version = '1.0.0-alpha01'
+    work_manager_version = '1.0.0-alpha01'
+
+    dependencies = [
+            auto_service            : 'com.google.auto.service:auto-service:1.0-rc4',
+            //can only apply one kotlin_std_lib
+            kotlin_stdlib_jre7      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            kotlin_stdlib_jre8      : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
+            //********************************
+            v4                      : "com.android.support:support-compat:$support_library_version",
+            appcompat_v7            : "com.android.support:appcompat-v7:$support_library_version",
+            constraint_layout       : 'com.android.support.constraint:constraint-layout:1.1.0',
+            junit                   : 'junit:junit:4.12',
+            test_runner             : 'com.android.support.test:runner:1.0.1',
+            espresso                : 'com.android.support.test.espresso:espresso-core:3.0.1',
+            design                  : "com.android.support:design:$support_library_version",
+            paging                  : 'android.arch.paging:runtime:1.0.0-rc1',
+            live_data_and_view_model: "android.arch.lifecycle:extensions:$android_arch_lib_version",
+            view_model              : "android.arch.lifecycle:viewmodel:$android_arch_lib_version",
+            live_data               : "android.arch.lifecycle:livedata:$android_arch_lib_version",
+            lifecycle_compiler      : "android.arch.lifecycle:compiler:$android_arch_lib_version",
+            work_manager            : "android.arch.work:work-runtime:$work_manager_version",
+            nav_fragment            : "android.arch.navigation:navigation-fragment:$nav_version",
+            nav_ui                  : "android.arch.navigation:navigation-ui:$nav_version",
+            rx2_kotlin              : "io.reactivex.rxjava2:rxkotlin:2.2.0",
+            rx2_android             : 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    ]
+
+    libs = [
+            dependencies.work_manager,
+            dependencies.v4,
+            dependencies.kotlin_stdlib_jre8,
+            dependencies.appcompat_v7,
+            dependencies.design,
+            dependencies.live_data_and_view_model,
+            dependencies.paging,
+            dependencies.nav_fragment,
+            dependencies.nav_ui,
+            dependencies.constraint_layout,
+            dependencies.work_manager,
+            dependencies.rx2_kotlin,
+            dependencies.rx2_android
+    ]
+
+    testLibs = [
+            dependencies.junit
+    ]
+
+    annceationProcessors = [
+            dependencies.test_runner,
+            dependencies.espresso,
+            dependencies.live_data_and_view_model
+    ]
+}
